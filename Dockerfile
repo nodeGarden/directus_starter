@@ -1,13 +1,14 @@
 # Dockerfile.directus
-FROM directus/directus:10.8.1
+FROM directus/directus:10.8.2
 
 # No additional steps are needed unless you want to customize the Directus image.
+COPY favicon.ico /favicon.ico
+
 WORKDIR /directus
 USER root
 
 # Avoid seeing constant log warnings about missing favicon.ico file
 COPY favicon.ico /favicon.ico
-COPY favicon.ico /directus/favicon.ico
 
 # Install local dependencies
 RUN npm i -g pnpm

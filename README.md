@@ -21,12 +21,15 @@ Everything I've done is based on a Mac, so if you are working on anything you mi
 1. Install everything in the Requirements above, make sure Docker is actively running
 2. Clone the repo locally: `git clone https://github.com/nodeGarden/directus_starter.git`
 3. Install dependencies: `npm install`
+3. Install dependencies: `npm run installDev`
 4. Generate an `.env` file: `npm run generate_env`
 5. Answer all the questions
 6. Edit the `docker-compose.yml`: Do a Find-and-Replace of `**APP_NAME**` with your actual app name (no spaces, e.g. myapp)
 7. Change the `Dockerfile`: make sure to update the Directus build version: `FROM directus/directus:10.8.1` to the latest: https://github.com/directus/directus/releases (using "latest" isn't always reliable/advised)
 8. Start the services: `npm run start`
 9. Open your browser: `http://localhost:8055/` (or whatever port you specified)
+   1.  Remember your email is: `<APP_EMAIL_USER>+<APP_NAME>@<APP_EMAIL_DOMAIN>`... e.g.: `mondo+myapp@gmail.com`
+   2.  Grab your password from the `.env` file with <APP_ADMIN_PASSWORD>
 
 -----
 
@@ -42,9 +45,11 @@ One exception is lets talk about the `npm/npm` scripts:
     "start": "docker-compose up --build",
     "stop": "docker-compose down",
     "rebuild": "docker build --pull --no-cache",
-    "postinstall": "mkdir ./extensions && mv node_modules/directus-extension* ./extensions/ && mv node_modules/@premieroctet/* ./extensions/ && rm node_modules/.package-lock.json && rm -R node_modules",
+    "preinstall": "export NODE_ENV=development",
+    "postinstall": "mkdir -p ./extensions && mv node_modules/directus-extension* ./extensions/ && mv node_modules/@premieroctet/* ./extensions/ && rm node_modules/.package-lock.json && rm -R node_modules && mkdir -p ./uploads",
     "generate_env": "node env_generator.mjs",
-    "start_over": "rm -R extensions & rm -R node_modules"
+    "start_over": "rm -R extensions & rm -R node_modules",
+    "installDev": "npm install inquirer randexp"
   },
 ```
 
@@ -93,8 +98,8 @@ You'll see if basically just pass the values from `.env` into here, but there ar
 
 **IMPORTANT** Don't forget the step to do a find/replace of the string `**APP_NAME**` with the actual app name (until the generator can handle this)
 
-- `ADMIN_EMAIL: "${APP_EMAIL_USER}+${APP_NAME}@${APP_EMAIL_DOMAIN}"`   e.g.: `mondo+myapp@nodegarden.net`
-- `EMAIL_FROM: "${APP_EMAIL_USER}+${APP_NAME}+server@${APP_EMAIL_DOMAIN}"`  e.g.: `mondo+myapp+server@nodegarden.net`
+- `ADMIN_EMAIL: "${APP_EMAIL_USER}+${APP_NAME}@${APP_EMAIL_DOMAIN}"`   e.g.: `mondo+myapp@gmail.com`
+- `EMAIL_FROM: "${APP_EMAIL_USER}+${APP_NAME}+server@${APP_EMAIL_DOMAIN}"`  e.g.: `mondo+myapp+server@gmail.com`
 
 I do this so that I don't need to make multiple email users (you can change if you like), as well as creating easy filters within Gmail.
 
