@@ -14,20 +14,20 @@ Everything I've done is based on a Mac, so if you are working on anything you mi
   - alternatively: https://docs.docker.com/engine/install/
 - `NodeJS`: https://formulae.brew.sh/formula/node
   - alternatively: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs
-- `pnpm`: https://formulae.brew.sh/formula/pnpm
-  - alternatively: https://pnpm.io/installation
+- ~~`pnpm`: https://formulae.brew.sh/formula/pnpm~~
+  - ~~alternatively: https://pnpm.io/installation~~
 
 -----
 
 ## Setup
 1. Install everything in the Requirements above, make sure Docker is actively running
 2. Clone the repo locally: `git clone https://github.com/nodeGarden/directus_starter.git`
-3. Install dependencies: `pnpm install`
-4. Generate an `.env` file: `pnpm run generate_env`
+3. Install dependencies: `npm install`
+4. Generate an `.env` file: `npm run generate_env`
 5. Answer all the questions
 6. Edit the `docker-compose.yml`: Do a Find-and-Replace of `**APP_NAME**` with your actual app name (no spaces, e.g. myApp)
 7. Change the `Dockerfile`: make sure to update the Directus build version: `FROM directus/directus:10.8.1` to the latest: https://github.com/directus/directus/releases (using "latest" isn't always reliable/advised)
-8. Start the services: `pnpm run start`
+8. Start the services: `npm run start`
 9. Open your browser: `http://localhost:8055/` (or whatever port you specified)
 
 -----
@@ -37,7 +37,7 @@ I'll assume everything up until the `generate_env`, `Dockerfile`, and `docker-co
 
 
 ### Scripts
-One exception is lets talk about the `npm/pnpm` scripts:
+One exception is lets talk about the `npm/npm` scripts:
 
 ```json
   "scripts": {
