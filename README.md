@@ -25,7 +25,7 @@ Everything I've done is based on a Mac, so if you are working on anything you mi
 4. Generate an `.env` file: `npm run generate_env`
 5. Answer all the questions
 6. Edit the `docker-compose.yml`: Do a Find-and-Replace of `**APP_NAME**` with your actual app name (no spaces, e.g. myapp)
-7. Change the `Dockerfile`: make sure to update the Directus build version: `FROM directus/directus:10.8.1` to the latest: https://github.com/directus/directus/releases (using "latest" isn't always reliable/advised)
+7. Change the `Dockerfile`: make sure to update the Directus build version: `FROM directus/directus:10.8.2` to the latest: https://github.com/directus/directus/releases (using "latest" isn't always reliable/advised)
 8. Start the services: `npm run start`
 9. Open your browser: `http://localhost:8055/` (or whatever port you specified)
    1.  Remember your email is: `<APP_EMAIL_USER>+<APP_NAME>@<APP_EMAIL_DOMAIN>`... e.g.: `mondo+myapp@gmail.com`
