@@ -1,0 +1,28 @@
+{
+  "name": "base_directus_setup",
+  "version": "1.0.0",
+  "description": "Base setup for Directus running via Docker",
+  "main": "index.js",
+  "scripts": {
+    "start": "docker-compose up --build",
+    "stop": "docker-compose down",
+    "rebuild": "docker build --pull --no-cache",
+    "postinstall": "mkdir ./extensions && mv node_modules/directus-extension* ./extensions/ && mv node_modules/@premieroctet/* ./extensions/ && rm node_modules/.package-lock.json && rm -R node_modules",
+    "generate_env": "node env_generator.mjs",
+    "start_over": "rm -R extensions & rm -R node_modules"
+  },
+  "dependencies": {
+    "@premieroctet/directus-extension-sql-panel": "latest",
+    "directus-extension-field-actions": "latest",
+    "directus-extension-group-modal-interface": "latest",
+    "directus-extension-sanitize-html": "latest",
+    "directus-extension-sparkline-display": "latest",
+    "directus-extension-tags-m2m-interface": "latest"
+  },
+  "devDependencies": {
+    "inquirer": "^9.2.12",
+    "randexp": "^0.5.3"
+  },
+  "author": "mondo@nodegarden.net",
+  "license": "UNLICENSED"
+}

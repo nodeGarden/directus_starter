@@ -1,0 +1,68 @@
+services:
+  **APP_NAME**-mysql:
+    image: mysql/mysql-server:latest
+    environment:
+      MYSQL_DATABASE: '${DATABASE_NAME}'
+      MYSQL_USER: '${DATABASE_USERNAME}'
+      MYSQL_PASSWORD: '${DATABASE_PASSWORD}'
+      MYSQL_ROOT_PASSWORD: '${DATABASE_ROOT_PASSWORD}'
+    expose:
+      - ${DATABASE_PORT}
+    ports:
+      - ${DATABASE_PORT}:${DATABASE_PORT}
+
+    volumes:
+      - ${APP_NAME}-mysql-data:/var/lib/mysql
+    networks:
+      - ${APP_NAME}-network
+
+  **APP_NAME**-directus:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      KEY: "${APP_KEY}"
+      SECRET: "${APP_SECRET}"
+      ENV: ${APP_ENV}
+      ADMIN_EMAIL: "${APP_EMAIL_USER}+${APP_NAME}@${APP_EMAIL_DOMAIN}"
+      ADMIN_PASSWORD: "${APP_ADMIN_PASSWORD}"
+
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_PORT: '${DATABASE_PORT}'
+      DATABASE_NAME: '${DATABASE_NAME}'
+      DATABASE_USERNAME: '${DATABASE_USERNAME}'
+      DATABASE_PASSWORD: '${DATABASE_PASSWORD}'
+      
+      ROBOTS_TXT: "User-agent: *\nDisallow: /"
+      
+      LOG_LEVEL: "debug"
+      LOG_STYLE: "pretty"
+      
+      TELEMETRY: "false"
+      QUERY_LIMIT_MAX: -1
+
+      EXTENSIONS_PATH: "./extensions"
+      EXTENSIONS_AUTO_RELOAD: "true"
+      EMAIL_VERIFY_SETUP: "true"
+      EMAIL_FROM: "${APP_EMAIL_USER}+${APP_NAME}+server@${APP_EMAIL_DOMAIN}"
+      EMAIL_TRANSPORT: "sendmail"
+      EMAIL_SENDMAIL_PATH: "/usr/sbin/sendmail"
+
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    depends_on:
+      - ${APP_NAME}-mysql
+    networks:
+      - ${APP_NAME}-network
+
+networks:
+  **APP_NAME**-network:
+    driver: bridge
+
+volumes:
+  **APP_NAME**-mysql-data:
+  uploads:
+  extensions:
