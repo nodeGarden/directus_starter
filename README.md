@@ -104,7 +104,7 @@ You'll see if basically just pass the values from `.env` into here, but there ar
 I do this so that I don't need to make multiple email users (you can change if you like), as well as creating easy filters within Gmail.
 
 ### Dockerfile
-Make sure to change the `FROM directus/directus:10.8.1` bit to the latest release number: https://github.com/directus/directus/releases
+Make sure to change the `FROM directus/directus:10.8.2` bit to the latest release number: https://github.com/directus/directus/releases
 
 Really shouldn't be anything else to do here unless you want to have any other things run on startup. I don't advise moving to NPM install of extensions each time, because some extensions may need to write files that need to persist. Remember docker storage will reset each time.
 
