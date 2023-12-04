@@ -29,7 +29,7 @@ Everything I've done is based on a Mac, so if you are working on anything you mi
 8. Start the services: `npm run start`
 9. Open your browser: `http://localhost:8055/` (or whatever port you specified)
    1.  Remember your email is: `<APP_EMAIL_USER>+<APP_NAME>@<APP_EMAIL_DOMAIN>`... e.g.: `mondo+myapp@gmail.com`
-   2.  Grab your password from the `.env` file with <APP_ADMIN_PASSWORD>
+   2.  Grab your password from the `.env` file with `<APP_ADMIN_PASSWORD>`
 
 -----
 
