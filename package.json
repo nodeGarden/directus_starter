@@ -7,9 +7,11 @@
     "start": "docker-compose up --build",
     "stop": "docker-compose down",
     "rebuild": "docker build --pull --no-cache",
+    "preinstall": "export NODE_ENV=development",
     "postinstall": "mkdir -p ./extensions && mv node_modules/directus-extension* ./extensions/ && mv node_modules/@premieroctet/* ./extensions/ && rm node_modules/.package-lock.json && rm -R node_modules && mkdir -p ./uploads",
     "generate_env": "node env_generator.mjs",
-    "start_over": "rm -R extensions & rm -R node_modules"
+    "start_over": "rm -R extensions & rm -R node_modules",
+    "installDev": "npm install inquirer randexp"
   },
   "dependencies": {
     "@premieroctet/directus-extension-sql-panel": "latest",

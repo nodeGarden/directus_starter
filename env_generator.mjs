@@ -11,7 +11,7 @@ const questions = [
         type: 'input',
         name: 'app_name',
         message: 'App Name. [Keep this short and lowercase with underscores]: ',
-        default: "myApp",
+        default: "myapp",
         transformer: ((answer) => answer.toLowerCase().replace(" ", "_"))
     },
     {
@@ -35,8 +35,7 @@ const questions = [
         type: 'input',
         name: 'email_user',
         message: 'Email User. [what appears before the @ symbol]: ',
-        default: "mondo",
-        validate: (answer) => { return !!answer.toLowerCase().match(/^([\w-]+\.)+[\w-]{2,4}$/) }
+        default: "mondo"
     },
     {
         type: 'input',
@@ -83,8 +82,9 @@ Inquirer.prompt(questions).then((answers) => {
         DATABASE_ROOT_PASSWORD=${db_root}
     `;
 
-    fs.writeFile(".env-" + answers.app_name, env_template, err => {
-        if (err) { console.error(err); }
+    // fs.writeFile(".env-" + answers.app_name, env_template, err => {
+    fs.writeFile(".env", env_template, err => {
+            if (err) { console.error(err); }
       });
   });
 

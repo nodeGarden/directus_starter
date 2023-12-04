@@ -1,5 +1,5 @@
 # Directus.io Starter Package
-A starter package to get a Directus instance up and running quickly. It doesn't cover everything, but it's got a good start. This will create a docker-backed instance of Directus.io, with a container for MySQL and for Redis. As I learn more, it'll expand.
+A starter package to get a Directus instance up and running quickly. It doesn't cover everything, but it's got a good start. This will create a docker-backed instance of Directus.io, with a container for MySQL. As I learn more, it'll expand.
 
 Directus.io is a great platform that is designed as a headless CMS, but I find its biggest value to me is as a backend for my own applications. It provides a great schema/model builder, UI for managing data manually, and an API layer. Then you just develop your own front-end to consume/populate it.
 
@@ -14,8 +14,6 @@ Everything I've done is based on a Mac, so if you are working on anything you mi
   - alternatively: https://docs.docker.com/engine/install/
 - `NodeJS`: https://formulae.brew.sh/formula/node
   - alternatively: https://nodejs.org/en/learn/getting-started/how-to-install-nodejs
-- ~~`pnpm`: https://formulae.brew.sh/formula/pnpm~~
-  - ~~alternatively: https://pnpm.io/installation~~
 
 -----
 
@@ -25,7 +23,7 @@ Everything I've done is based on a Mac, so if you are working on anything you mi
 3. Install dependencies: `npm install`
 4. Generate an `.env` file: `npm run generate_env`
 5. Answer all the questions
-6. Edit the `docker-compose.yml`: Do a Find-and-Replace of `**APP_NAME**` with your actual app name (no spaces, e.g. myApp)
+6. Edit the `docker-compose.yml`: Do a Find-and-Replace of `**APP_NAME**` with your actual app name (no spaces, e.g. myapp)
 7. Change the `Dockerfile`: make sure to update the Directus build version: `FROM directus/directus:10.8.1` to the latest: https://github.com/directus/directus/releases (using "latest" isn't always reliable/advised)
 8. Start the services: `npm run start`
 9. Open your browser: `http://localhost:8055/` (or whatever port you specified)
@@ -95,8 +93,8 @@ You'll see if basically just pass the values from `.env` into here, but there ar
 
 **IMPORTANT** Don't forget the step to do a find/replace of the string `**APP_NAME**` with the actual app name (until the generator can handle this)
 
-- `ADMIN_EMAIL: "${APP_EMAIL_USER}+${APP_NAME}@${APP_EMAIL_DOMAIN}"`   e.g.: `mondo+myApp@nodegarden.net`
-- `EMAIL_FROM: "${APP_EMAIL_USER}+${APP_NAME}+server@${APP_EMAIL_DOMAIN}"`  e.g.: `mondo+myApp+server@nodegarden.net`
+- `ADMIN_EMAIL: "${APP_EMAIL_USER}+${APP_NAME}@${APP_EMAIL_DOMAIN}"`   e.g.: `mondo+myapp@nodegarden.net`
+- `EMAIL_FROM: "${APP_EMAIL_USER}+${APP_NAME}+server@${APP_EMAIL_DOMAIN}"`  e.g.: `mondo+myapp+server@nodegarden.net`
 
 I do this so that I don't need to make multiple email users (you can change if you like), as well as creating easy filters within Gmail.
 
